@@ -2,13 +2,14 @@
 
 
 # put your code here
+dict_restaurants = {}
 
 def build_dict_restaurants(filename):
 	"""Takes a file and creates a dictionary of restaurants as keys and ratings as values"""
 
 	with open(filename) as restaurant_ratings:
 
-		dict_restaurants = {}
+		
 
 		for line in restaurant_ratings:
 			line = line.strip()
@@ -17,6 +18,8 @@ def build_dict_restaurants(filename):
 			dict_restaurants[line[0]] = line[1]
 	
 	return dict_restaurants
+
+
 
 def print_restuarant_ratings(dictionary):
 	"""Given a dictionary it alphebatizes the keys"""
@@ -28,10 +31,18 @@ def print_restuarant_ratings(dictionary):
 
 
 
-def add_rating(dictionary):
+def add_rating():
+	"""add new entry into dictionary"""
 
-	new_restaurant_name = input("What's your new restaurant?")
-	new_restaurant_score = input("What rating would you give it?")
+
+
+	new_restaurant_name = input("What's your new restaurant? ")
+	new_restaurant_score = input("What rating would you give it? ")
+
+	dict_restaurants[new_restaurant_name] = dict_restaurants.get(new_restaurant_name, new_restaurant_score)
+
+	print("Thank you for your rating!")
+
 
 
 
@@ -41,3 +52,6 @@ def add_rating(dictionary):
 
 
 print_restuarant_ratings(build_dict_restaurants("scores.txt"))
+add_rating()
+print("Here is the new list of restaurant ratings.")
+print_restuarant_ratings(dict_restaurants)
